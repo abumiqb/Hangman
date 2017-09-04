@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.abubakr.hangman.MainActivity"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.17" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.17"
+        android:text="Hangman"
+        android:textAlignment="center"
+        android:textSize="50sp"
+        android:textStyle="italic" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.32" />
+
+    <Button
+        android:id="@+id/btnSpill"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Spill"
+        android:layout_weight="0.04"
+        android:onClick="Spill"/>
+
+    <Button
+        android:id="@+id/btnRegler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Regler"
+        android:layout_weight="0.04"
+        android:onClick="Regler"/>
+
+    <Button
+        android:id="@+id/btnSprak"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Språk"
+        android:layout_weight="0.03"
+        android:onClick="Sprak"/>
+
+    <Button
+        android:id="@+id/btnStatistikk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.03"
+        android:text="Statistikk"
+        android:textSize="14sp"
+        android:onClick="Stat"/>
+
+</LinearLayout>
