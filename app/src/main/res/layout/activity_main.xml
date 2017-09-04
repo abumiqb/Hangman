@@ -1,65 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:weightSum="1"
     tools:context="com.example.abubakr.hangman.MainActivity"
     android:orientation="vertical"
-    android:weightSum="1">
+    android:baselineAligned="false">
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.17" />
+        android:layout_weight="0.10" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        app:srcCompat="@drawable/logo"
+        android:contentDescription=""
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.17"
+        android:layout_weight="0.15"
+        android:gravity="center"
         android:text="Hangman"
-        android:textAlignment="center"
-        android:textSize="50sp"
-        android:textStyle="italic" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@color/tittelFarge"
+        tools:ignore="HardcodedText" />
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.32" />
+        android:layout_weight="0.15" />
 
     <Button
         android:id="@+id/btnSpill"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/tittelFarge"
+        android:forceHasOverlappingRendering="false"
+        android:onClick="Spill"
+        android:text="Spill"
+        android:textColor="@color/windowBackground"
+        tools:ignore="HardcodedText" />
+
+    <Space
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Spill"
-        android:layout_weight="0.04"
-        android:onClick="Spill"/>
+        android:layout_weight="0.10" />
 
     <Button
         android:id="@+id/btnRegler"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/tittelFarge"
+        android:onClick="Regler"
+        android:text="Regler"
+        android:textColor="@color/windowBackground"
+        tools:ignore="HardcodedText" />
+
+    <Space
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Regler"
-        android:layout_weight="0.04"
-        android:onClick="Regler"/>
+        android:layout_weight="0.10" />
 
     <Button
         android:id="@+id/btnSprak"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/tittelFarge"
+        android:onClick="Sprak"
+        android:text="Språk"
+        android:textColor="@color/windowBackground"
+        tools:ignore="HardcodedText" />
+
+    <Space
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Språk"
-        android:layout_weight="0.03"
-        android:onClick="Sprak"/>
+        android:layout_weight="0.10" />
 
     <Button
         android:id="@+id/btnStatistikk"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.03"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/tittelFarge"
+        android:onClick="Stat"
         android:text="Statistikk"
+        android:textColor="@color/windowBackground"
         android:textSize="14sp"
-        android:onClick="Stat"/>
+        tools:ignore="HardcodedText" />
 
 </LinearLayout>
