@@ -2,8 +2,11 @@
 <resources>
     <string-array name="OrdListe">
         <item>Hest</item>
-        <item>Ape</item>
-        <item>Ku</item>
-        <item>Slange</item>
+        <item>PC</item>
+        <item>Data</item>
+        <item>Mus</item>
+        <item>Jeger</item>
+        <item>And</item>
+        <item>Pels</item>
     </string-array>
 </resources>
