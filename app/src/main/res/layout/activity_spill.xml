@@ -9,20 +9,20 @@
     tools:layout_editor_absoluteX="0dp">
 
     <ImageView
-        android:id="@+id/game_images"
+        android:id="@+id/galge"
         android:layout_width="0dp"
         android:layout_height="269dp"
+        android:layout_marginEnd="66dp"
+        android:layout_marginStart="66dp"
         android:layout_marginTop="16dp"
-        android:contentDescription="game_images"
+        android:contentDescription="@string/galge_bilde"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/galge0"
-        tools:layout_constraintRight_creator="1"
-        android:layout_marginStart="66dp"
-        android:layout_marginEnd="66dp"
-        tools:layout_constraintLeft_creator="1" />
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1" />
 
     <LinearLayout
         android:id="@+id/output_layout"
@@ -40,6 +40,7 @@
 
     <EditText
         android:id="@+id/inputBokstav"
+        android:labelFor="@+id/inputBokstav"
         android:layout_width="43dp"
         android:layout_height="40dp"
         android:layout_marginBottom="8dp"

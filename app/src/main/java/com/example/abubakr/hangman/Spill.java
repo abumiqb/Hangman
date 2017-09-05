@@ -17,9 +17,10 @@ public class Spill extends AppCompatActivity
     String[] Ord;
     Button knapp;
     EditText inputBokstav;
-    ImageView game_image_view;
+    ImageView galge;
     LinearLayout my_output_layout;
-    int wrong_attempts = 0,successfull_attempts = 0;
+    int antallFeil = 0;
+    int antallRiktig = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -28,21 +29,16 @@ public class Spill extends AppCompatActivity
         setContentView(R.layout.activity_spill);
 
         knapp = (Button)findViewById(R.id.knpOK);
-
         inputBokstav = (EditText)findViewById(R.id.inputBokstav);
-
-        game_image_view = (ImageView)findViewById(R.id.game_images);
+        galge = (ImageView)findViewById(R.id.galge);
 
         my_output_layout = (LinearLayout)findViewById(R.id.output_layout);
 
         Ord = getResources().getStringArray(R.array.OrdListe);
 
         int index = (int)(Math.random()*Ord.length);
-
         final String selected_string = Ord[index];
-
         final ArrayList<String> used_characters = new ArrayList<>();
-
         final TextView[] myTextViews = new TextView[selected_string.length()];
 
         for (int i = 0; i < selected_string.length(); i++)
@@ -86,41 +82,41 @@ public class Spill extends AppCompatActivity
                         {
                             myTextViews[i].setText(entered);
                             matched = 1;
-                            successfull_attempts+=1;
+                            antallRiktig += 1;
                         }
                     }
 
                     if(matched!= 1)
                     {
-                        wrong_attempts += 1;
+                        antallFeil += 1;
 
-                        switch(wrong_attempts)
+                        switch(antallFeil)
                         {
-                            case 1 : game_image_view.setImageResource(R.drawable.galge1);
+                            case 1 : galge.setImageResource(R.drawable.galge1);
                                 break;
-                            case 2 : game_image_view.setImageResource(R.drawable.galge2);
+                            case 2 : galge.setImageResource(R.drawable.galge2);
                                 break;
-                            case 3 : game_image_view.setImageResource(R.drawable.galge3);
+                            case 3 : galge.setImageResource(R.drawable.galge3);
                                 break;
-                            case 4 : game_image_view.setImageResource(R.drawable.galge4);
+                            case 4 : galge.setImageResource(R.drawable.galge4);
                                 break;
-                            case 5 : game_image_view.setImageResource(R.drawable.galge5);
+                            case 5 : galge.setImageResource(R.drawable.galge5);
                                 break;
-                            case 6 : game_image_view.setImageResource(R.drawable.galge6);
+                            case 6 : galge.setImageResource(R.drawable.galge6);
                                 break;
                         }
                     }
 
-                    if(successfull_attempts == selected_string.length())
+                    if(antallRiktig == selected_string.length())
                     {
                         Intent i = new Intent(Spill.this,MainActivity.class);
-                        i.putExtra("game_report","Du vant! \n\t Won");
+                        i.putExtra("NAN","Du vant! \n\t Won");
                         startActivity(i);
                     }
-                    else if(wrong_attempts == 6)
+                    else if(antallFeil == 6)
                     {
                         Intent i = new Intent(Spill.this,MainActivity.class);
-                        i.putExtra("game_report","Du har tapt!\n\t" + selected_string);
+                        i.putExtra("NAN","Du har tapt!\n\t" + selected_string);
                         startActivity(i);
                     }
 
