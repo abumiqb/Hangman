@@ -16,7 +16,7 @@ public class Spill extends AppCompatActivity
 {
     String[] Ord;
     Button knapp;
-    EditText input_val;
+    EditText inputBokstav;
     ImageView game_image_view;
     LinearLayout my_output_layout;
     int wrong_attempts = 0,successfull_attempts = 0;
@@ -29,7 +29,7 @@ public class Spill extends AppCompatActivity
 
         knapp = (Button)findViewById(R.id.knpOK);
 
-        input_val = (EditText)findViewById(R.id.gj);
+        inputBokstav = (EditText)findViewById(R.id.inputBokstav);
 
         game_image_view = (ImageView)findViewById(R.id.game_images);
 
@@ -62,8 +62,8 @@ public class Spill extends AppCompatActivity
             {
                 try
                 {
-                    String entered = input_val.getText().toString();
-                    input_val.setText("");
+                    String entered = inputBokstav.getText().toString();
+                    inputBokstav.setText("");
 
                     if(entered.matches(""))
                     {
