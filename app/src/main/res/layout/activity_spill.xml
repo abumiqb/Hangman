@@ -10,13 +10,12 @@
 
     <ImageView
         android:id="@+id/galge"
-        android:layout_width="0dp"
-        android:layout_height="269dp"
+        android:layout_width="225dp"
+        android:layout_height="214dp"
         android:layout_marginEnd="66dp"
         android:layout_marginStart="66dp"
         android:layout_marginTop="16dp"
         android:contentDescription="@string/galge_bilde"
-        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -31,18 +30,19 @@
         android:layout_marginBottom="188dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         tools:layout_constraintRight_creator="1"
-        tools:layout_constraintLeft_creator="1">
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginLeft="0dp">
     </LinearLayout>
 
     <EditText
         android:id="@+id/inputBokstav"
         android:labelFor="@+id/inputBokstav"
-        android:layout_width="43dp"
-        android:layout_height="40dp"
+        android:layout_width="48dp"
+        android:layout_height="41dp"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="14dp"
@@ -56,8 +56,8 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/output_layout"
-        app:layout_constraintVertical_bias="0.158"
-        tools:layout_editor_absoluteX="146dp" />
+        app:layout_constraintVertical_bias="0.086"
+        tools:layout_editor_absoluteX="120dp" />
 
     <Button
         android:id="@+id/knpOK"
@@ -72,5 +72,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/inputBokstav"
         app:layout_constraintTop_toBottomOf="@+id/output_layout"
-        app:layout_constraintVertical_bias="0.869" />
+        app:layout_constraintVertical_bias="0.69" />
 </android.support.constraint.ConstraintLayout>

@@ -18,7 +18,7 @@ public class Spill extends AppCompatActivity
     Button knapp;
     EditText inputBokstav;
     ImageView galge;
-    LinearLayout my_output_layout;
+    LinearLayout gjettMeg;
     int antallFeil = 0;
     int antallRiktig = 0;
 
@@ -30,24 +30,24 @@ public class Spill extends AppCompatActivity
 
         knapp = (Button)findViewById(R.id.knpOK);
         inputBokstav = (EditText)findViewById(R.id.inputBokstav);
-        galge = (ImageView)findViewById(R.id.galge);
 
-        my_output_layout = (LinearLayout)findViewById(R.id.output_layout);
+        galge = (ImageView)findViewById(R.id.galge);
+        gjettMeg = (LinearLayout)findViewById(R.id.output_layout);
 
         Ord = getResources().getStringArray(R.array.OrdListe);
 
         int index = (int)(Math.random()*Ord.length);
-        final String selected_string = Ord[index];
-        final ArrayList<String> used_characters = new ArrayList<>();
-        final TextView[] myTextViews = new TextView[selected_string.length()];
+        final String nan = Ord[index];
+        final ArrayList<String> brukteOrd = new ArrayList<>();
+        final TextView[] myTextViews = new TextView[nan.length()];
 
-        for (int i = 0; i < selected_string.length(); i++)
+        for (int i = 0; i < nan.length(); i++)
         {
             final TextView rowTextView = new TextView(this);
             rowTextView.setText(" _ ");
-            rowTextView.setTextColor(0xFF303F9F);
-            rowTextView.setTextSize(25);
-            my_output_layout.addView(rowTextView);
+            rowTextView.setTextColor(getResources().getColor(R.color.colorPrimary));
+            rowTextView.setTextSize(50);
+            gjettMeg.addView(rowTextView);
             myTextViews[i] = rowTextView;
         }
 
@@ -59,6 +59,9 @@ public class Spill extends AppCompatActivity
                 try
                 {
                     String entered = inputBokstav.getText().toString();
+
+
+
                     inputBokstav.setText("");
 
                     if(entered.matches(""))
@@ -67,20 +70,23 @@ public class Spill extends AppCompatActivity
                         return;
                     }
 
-                    if(used_characters.contains(entered))
+                    if(brukteOrd.contains(entered))
                     {
                         Toast.makeText(Spill.this,"Allerede brukt!",Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    used_characters.add(entered);
+                    brukteOrd.add(entered);
 
                     int matched = 0;
 
-                    for(int i=0;i<selected_string.length();i++)
+                    for(int i = 0; i < nan.length(); i++)
                     {
-                        if(String.valueOf(selected_string.charAt(i)).equals(entered))
+                        if(String.valueOf(nan.charAt(i)).toLowerCase().equals(entered.toLowerCase()))
                         {
-                            myTextViews[i].setText(entered);
+                            if(i > 0)
+                                myTextViews[i].setText(entered.toLowerCase());
+                            else
+                                myTextViews[i].setText(entered.toUpperCase());
                             matched = 1;
                             antallRiktig += 1;
                         }
@@ -107,7 +113,7 @@ public class Spill extends AppCompatActivity
                         }
                     }
 
-                    if(antallRiktig == selected_string.length())
+                    if(antallRiktig == nan.length())
                     {
                         Intent i = new Intent(Spill.this,MainActivity.class);
                         i.putExtra("NAN","Du vant! \n\t Won");
@@ -116,10 +122,9 @@ public class Spill extends AppCompatActivity
                     else if(antallFeil == 6)
                     {
                         Intent i = new Intent(Spill.this,MainActivity.class);
-                        i.putExtra("NAN","Du har tapt!\n\t" + selected_string);
+                        i.putExtra("NAN","Du har tapt!\n\t" + nan);
                         startActivity(i);
                     }
-
                 }
                 catch (Exception e)
                 {
@@ -127,6 +132,5 @@ public class Spill extends AppCompatActivity
                 }
             }
         });
-
     }
 }
