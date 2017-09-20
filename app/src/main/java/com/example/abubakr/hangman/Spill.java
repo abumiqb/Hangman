@@ -1,6 +1,8 @@
 package com.example.abubakr.hangman;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,7 +26,7 @@ public class Spill extends AppCompatActivity implements View.OnClickListener
     int index;
     String nan;
     ArrayList<String> brukteOrd = new ArrayList<>();
-    TextView[] myTextViews;
+    TextView[] tekst;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -67,16 +69,16 @@ public class Spill extends AppCompatActivity implements View.OnClickListener
         index = (int) (Math.random() * Ord.length);
         nan = Ord[index];
         brukteOrd = new ArrayList<>();
-        myTextViews = new TextView[nan.length()];
+        tekst = new TextView[nan.length()];
 
         for (int i = 0; i < nan.length(); i++)
         {
-            final TextView rowTextView = new TextView(this);
-            rowTextView.setText(" _ ");
-            rowTextView.setTextColor(getResources().getColor(R.color.colorPrimary));
-            rowTextView.setTextSize(50);
-            gjettMeg.addView(rowTextView);
-            myTextViews[i] = rowTextView;
+            final TextView streker = new TextView(this);
+            streker.setText(" _ ");
+            streker.setTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
+            streker.setTextSize(50);
+            gjettMeg.addView(streker);
+            tekst[i] = streker;
         }
     }
 
@@ -84,36 +86,35 @@ public class Spill extends AppCompatActivity implements View.OnClickListener
     public void onClick(View v)
     {
         char hentBokstaver = ((Button) v).getText().charAt(0);
-        String entered = String.valueOf(hentBokstaver);
+        String tastatur = String.valueOf(hentBokstaver);
         inputBokstav.setText("");
+        v.setBackgroundColor(Color.BLACK);
 
-        if (entered.matches(""))
-        {
-            Toast.makeText(Spill.this, "Skriv inn bokstaver", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (brukteOrd.contains(entered))
+        if (brukteOrd.contains(tastatur))
         {
             Toast.makeText(Spill.this, "Allerede brukt!", Toast.LENGTH_SHORT).show();
+
             return;
         }
-        brukteOrd.add(entered);
+        brukteOrd.add(tastatur);
 
-        int matched = 0;
+        int samme = 0;
 
         for (int i = 0; i < nan.length(); i++)
         {
-            if (String.valueOf(nan.charAt(i)).toLowerCase().equals(entered.toLowerCase())) {
+            if (String.valueOf(nan.charAt(i)).toLowerCase().equals(tastatur.toLowerCase()))
+            {
                 if (i > 0)
-                    myTextViews[i].setText(entered.toLowerCase());
+
+                    tekst[i].setText(tastatur.toLowerCase());
                 else
-                    myTextViews[i].setText(entered.toUpperCase());
-                matched = 1;
+                    tekst[i].setText(tastatur.toUpperCase());
+                samme = 1;
                 antallRiktig += 1;
+
             }
         }
-        if (matched != 1)
+        if (samme != 1)
         {
             antallFeil += 1;
 
@@ -141,13 +142,16 @@ public class Spill extends AppCompatActivity implements View.OnClickListener
         }
         if (antallRiktig == nan.length())
         {
-            Intent i = new Intent(Spill.this, MainActivity.class);
-            i.putExtra("NAN", "Du vant! \n\t Won");
-            startActivity(i);
-        } else if (antallFeil == 6) {
-            Intent i = new Intent(Spill.this, MainActivity.class);
-            i.putExtra("NAN", "Du har tapt!\n\t" + nan);
-            startActivity(i);
+            //Intent i = new Intent(Spill.this, MainActivity.class);
+            //i.putExtra("NAN", "Du vant! \n\t Won");
+            //startActivity(i);
+            System.out.println("Du vant!");
+        } else if (antallFeil == 6)
+        {
+            //Intent i = new Intent(Spill.this, MainActivity.class);
+            //i.putExtra("NAN", "Du har tapt!\n\t" + nan);
+            //startActivity(i);
+            System.out.println("Du tapte!");
         }
     }
 }
