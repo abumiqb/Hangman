@@ -29,9 +29,13 @@ public class Spill extends AppCompatActivity implements View.OnClickListener {
     String nan;
     ArrayList<String> brukteOrd = new ArrayList<>();
     TextView[] tekst;
+    int score;
+    int minus = 1000;
+    int total;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spill);
 
@@ -76,14 +80,15 @@ public class Spill extends AppCompatActivity implements View.OnClickListener {
             final TextView streker = new TextView(this);
             streker.setText(" _ ");
             streker.setTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
-            streker.setTextSize(50);
+            streker.setTextSize(35);
             gjettMeg.addView(streker);
             tekst[i] = streker;
         }
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View v)
+    {
         char hentBokstaver = ((Button) v).getText().charAt(0);
         String tastatur = String.valueOf(hentBokstaver);
         inputBokstav.setText("");
@@ -110,43 +115,54 @@ public class Spill extends AppCompatActivity implements View.OnClickListener {
 
             }
         }
-        if (samme != 1) {
+        if (samme != 1)
+        {
             antallFeil += 1;
 
-            switch (antallFeil) {
+            switch (antallFeil)
+            {
                 case 1:
                     galge.setImageResource(R.drawable.galge1);
+                    int score = 500;
                     break;
                 case 2:
                     galge.setImageResource(R.drawable.galge2);
+                    score = 400;
                     break;
                 case 3:
                     galge.setImageResource(R.drawable.galge3);
+                    score = 300;
                     break;
                 case 4:
                     galge.setImageResource(R.drawable.galge4);
+                    score = 200;
                     break;
                 case 5:
                     galge.setImageResource(R.drawable.galge5);
+                    score = 100;
                     break;
                 case 6:
                     galge.setImageResource(R.drawable.galge6);
+                    score = 0;
+
                     break;
+
             }
+
         }
-       /* if (antallRiktig == nan.length())
+       if (antallRiktig == nan.length())
         {
             System.out.println("Du vant!");
             Intent i = new Intent(Spill.this, MainActivity.class);
             i.putExtra("NAN", "Du vant! \n\t Won");
             startActivity(i);
 
-        }*/
+        }
         if (antallFeil == 6)
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Du tapte!");
-            builder.setMessage("Riktig ord: " + nan)
+            builder.setMessage("Riktig ord: " + nan + "Din score:" + total)
 
                     .setCancelable(false)
 
