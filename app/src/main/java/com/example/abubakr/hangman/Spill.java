@@ -1,8 +1,11 @@
 package com.example.abubakr.hangman;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,8 +18,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 
-public class Spill extends AppCompatActivity implements View.OnClickListener
-{
+public class Spill extends AppCompatActivity implements View.OnClickListener {
     String[] Ord;
     EditText inputBokstav;
     ImageView galge;
@@ -29,8 +31,7 @@ public class Spill extends AppCompatActivity implements View.OnClickListener
     TextView[] tekst;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spill);
 
@@ -71,8 +72,7 @@ public class Spill extends AppCompatActivity implements View.OnClickListener
         brukteOrd = new ArrayList<>();
         tekst = new TextView[nan.length()];
 
-        for (int i = 0; i < nan.length(); i++)
-        {
+        for (int i = 0; i < nan.length(); i++) {
             final TextView streker = new TextView(this);
             streker.setText(" _ ");
             streker.setTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
@@ -83,15 +83,13 @@ public class Spill extends AppCompatActivity implements View.OnClickListener
     }
 
     @Override
-    public void onClick(View v)
-    {
+    public void onClick(View v) {
         char hentBokstaver = ((Button) v).getText().charAt(0);
         String tastatur = String.valueOf(hentBokstaver);
         inputBokstav.setText("");
         v.setBackgroundColor(Color.BLACK);
 
-        if (brukteOrd.contains(tastatur))
-        {
+        if (brukteOrd.contains(tastatur)) {
             Toast.makeText(Spill.this, "Allerede brukt!", Toast.LENGTH_SHORT).show();
 
             return;
@@ -100,10 +98,8 @@ public class Spill extends AppCompatActivity implements View.OnClickListener
 
         int samme = 0;
 
-        for (int i = 0; i < nan.length(); i++)
-        {
-            if (String.valueOf(nan.charAt(i)).toLowerCase().equals(tastatur.toLowerCase()))
-            {
+        for (int i = 0; i < nan.length(); i++) {
+            if (String.valueOf(nan.charAt(i)).toLowerCase().equals(tastatur.toLowerCase())) {
                 if (i > 0)
 
                     tekst[i].setText(tastatur.toLowerCase());
@@ -114,12 +110,10 @@ public class Spill extends AppCompatActivity implements View.OnClickListener
 
             }
         }
-        if (samme != 1)
-        {
+        if (samme != 1) {
             antallFeil += 1;
 
-            switch (antallFeil)
-            {
+            switch (antallFeil) {
                 case 1:
                     galge.setImageResource(R.drawable.galge1);
                     break;
@@ -140,18 +134,40 @@ public class Spill extends AppCompatActivity implements View.OnClickListener
                     break;
             }
         }
-        if (antallRiktig == nan.length())
+       /* if (antallRiktig == nan.length())
         {
-            //Intent i = new Intent(Spill.this, MainActivity.class);
-            //i.putExtra("NAN", "Du vant! \n\t Won");
-            //startActivity(i);
             System.out.println("Du vant!");
-        } else if (antallFeil == 6)
+            Intent i = new Intent(Spill.this, MainActivity.class);
+            i.putExtra("NAN", "Du vant! \n\t Won");
+            startActivity(i);
+
+        }*/
+        if (antallFeil == 6)
         {
-            //Intent i = new Intent(Spill.this, MainActivity.class);
-            //i.putExtra("NAN", "Du har tapt!\n\t" + nan);
-            //startActivity(i);
-            System.out.println("Du tapte!");
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Du tapte!");
+            builder.setMessage("Riktig ord: " + nan)
+
+                    .setCancelable(false)
+
+                    .setPositiveButton("Nytt spill", new DialogInterface.OnClickListener()
+                    {
+                        public void onClick(DialogInterface dialog, int id)
+                        {
+                            Intent intent = getIntent();
+                            finish();
+                            startActivity(intent);
+                        }
+                    })
+                    .setNegativeButton("Hovedmeny", new DialogInterface.OnClickListener()
+                    {
+                        public void onClick(DialogInterface dialog, int id)
+                        {
+                            Spill.this.finish();
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
         }
     }
 }
