@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="OrdListe">
-        <item>Hest</item>
-        <item>PC</item>
-        <item>Data</item>
-        <item>Mus</item>
-        <item>Jeger</item>
-        <item>And</item>
-        <item>Pels</item>
+        <item>Abc</item>
+        <item>Ata</item>
+        <item>Katt</item>
+        <item>Natt</item>
+
     </string-array>
 </resources>
