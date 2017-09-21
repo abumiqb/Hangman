@@ -8,4 +8,11 @@
     <string name="sprkEng">Engelsk</string>
     <string name="sprkNor">Norsk</string>
     <string name="sprklbl">Velg Språk</string>
+    <string name="hovedM">Hovedmeny</string>
+    <string name="Duvant">Du Vant!</string>
+    <string name="NyttSpill">Nytt Spill</string>
+    <string name="Riktigord">Riktig Ord</string>
+    <string name="dinScore">Din Score</string>
+    <string name="Dutapte">Du Tapte!</string>
+    <string name="used">Allerede brukt</string>
 </resources>

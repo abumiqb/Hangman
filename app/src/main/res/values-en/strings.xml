@@ -8,4 +8,11 @@
     <string name="sprkEng">English</string>
     <string name="sprkNor">Norwegian</string>
     <string name="sprklbl">Choose Language</string>
+    <string name="hovedM">Main menu</string>
+    <string name="Duvant">You Win!</string>
+    <string name="NyttSpill">New Game</string>
+    <string name="Riktigord">Guessed Word</string>
+    <string name="dinScore">Your Score</string>
+    <string name="Dutapte">You Lost!</string>
+    <string name="used">Word used</string>
 </resources>

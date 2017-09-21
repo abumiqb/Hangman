@@ -92,6 +92,8 @@ public class Spill extends AppCompatActivity implements View.OnClickListener
             c.setVisibility(View.VISIBLE);
         } */
 
+
+
         inputBokstav = (EditText) findViewById(R.id.inputBokstav);
         galge = (ImageView) findViewById(R.id.galge);
         gjettMeg = (LinearLayout) findViewById(R.id.output_layout);
@@ -125,7 +127,7 @@ public class Spill extends AppCompatActivity implements View.OnClickListener
 
         if (brukteOrd.contains(tastatur))
         {
-            Toast.makeText(Spill.this, "Allerede brukt!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Spill.this, R.string.used, Toast.LENGTH_SHORT).show();
 
             return;
         }
@@ -180,14 +182,16 @@ public class Spill extends AppCompatActivity implements View.OnClickListener
             }
 
         }
+        String t = getResources().getString(R.string.Riktigord);
+        String s = getResources().getString(R.string.dinScore);
         if (antallRiktig == nan.length())
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Du Vant!");
-            builder.setMessage("Riktig ord: " + nan + "\n" + "Din score: " + score)
+            builder.setTitle(R.string.Duvant);
+            builder.setMessage(t +": "+ nan + "\n" + s + ": " + score)
 
                     .setCancelable(false)
-                    .setPositiveButton("Nytt spill", new DialogInterface.OnClickListener()
+                    .setPositiveButton(R.string.NyttSpill, new DialogInterface.OnClickListener()
                     {
                         public void onClick(DialogInterface dialog, int id)
                         {
@@ -196,7 +200,8 @@ public class Spill extends AppCompatActivity implements View.OnClickListener
                             startActivity(intent);
                         }
                     })
-                    .setNegativeButton("Hovedmeny", new DialogInterface.OnClickListener()
+
+                    .setNegativeButton(R.string.hovedM, new DialogInterface.OnClickListener()
                     {
                         public void onClick(DialogInterface dialog, int id)
                         {
@@ -206,16 +211,20 @@ public class Spill extends AppCompatActivity implements View.OnClickListener
             AlertDialog alert = builder.create();
             alert.show();
 
+
+
         }
         if (antallFeil == 6)
         {
+
+
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Du tapte!");
-            builder.setMessage("Riktig ord: " + nan + "\n" + "Din score: " + deviceLocale)
+            builder.setTitle(R.string.Dutapte);
+            builder.setMessage(t +": "+ nan + "\n" + s + ": " + score)
 
                     .setCancelable(false)
 
-                    .setPositiveButton("Nytt spill", new DialogInterface.OnClickListener()
+                    .setPositiveButton(R.string.NyttSpill, new DialogInterface.OnClickListener()
                     {
                         public void onClick(DialogInterface dialog, int id)
                         {
@@ -224,7 +233,7 @@ public class Spill extends AppCompatActivity implements View.OnClickListener
                             startActivity(intent);
                         }
                     })
-                    .setNegativeButton("Hovedmeny", new DialogInterface.OnClickListener()
+                    .setNegativeButton(R.string.hovedM, new DialogInterface.OnClickListener()
                     {
                         public void onClick(DialogInterface dialog, int id)
                         {
