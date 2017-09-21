@@ -3,6 +3,7 @@ package com.example.abubakr.hangman;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -16,22 +17,28 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
+import java.util.Locale;
 
 
-public class Spill extends AppCompatActivity implements View.OnClickListener {
+public class Spill extends AppCompatActivity implements View.OnClickListener
+{
     String[] Ord;
     EditText inputBokstav;
     ImageView galge;
     LinearLayout gjettMeg;
     int antallFeil = 0;
     int antallRiktig = 0;
+    int score = 600;
     int index;
     String nan;
     ArrayList<String> brukteOrd = new ArrayList<>();
     TextView[] tekst;
-    int score;
-    int minus = 1000;
-    int total;
+
+    //String sprak = Resources.getSystem().getConfiguration().locale;
+
+    String deviceLocale= Locale.getDefault().getDisplayLanguage();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -65,6 +72,25 @@ public class Spill extends AppCompatActivity implements View.OnClickListener {
         findViewById(R.id.x).setOnClickListener(this);
         findViewById(R.id.y).setOnClickListener(this);
         findViewById(R.id.z).setOnClickListener(this);
+        findViewById(R.id.æ).setOnClickListener(this);
+        findViewById(R.id.ø).setOnClickListener(this);
+        findViewById(R.id.å).setOnClickListener(this);
+        View a = findViewById(R.id.æ);
+        View b = findViewById(R.id.ø);
+        View c = findViewById(R.id.å);
+
+     /*   if (sprak.equals("en"))
+        {
+            a.setVisibility(View.GONE);
+            b.setVisibility(View.GONE);
+            c.setVisibility(View.GONE);
+        }
+        else if(sprak.equals("nb"))
+        {
+            a.setVisibility(View.VISIBLE);
+            b.setVisibility(View.VISIBLE);
+            c.setVisibility(View.VISIBLE);
+        } */
 
         inputBokstav = (EditText) findViewById(R.id.inputBokstav);
         galge = (ImageView) findViewById(R.id.galge);
@@ -76,7 +102,8 @@ public class Spill extends AppCompatActivity implements View.OnClickListener {
         brukteOrd = new ArrayList<>();
         tekst = new TextView[nan.length()];
 
-        for (int i = 0; i < nan.length(); i++) {
+        for (int i = 0; i < nan.length(); i++)
+        {
             final TextView streker = new TextView(this);
             streker.setText(" _ ");
             streker.setTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
@@ -86,6 +113,8 @@ public class Spill extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
+
+
     @Override
     public void onClick(View v)
     {
@@ -94,7 +123,8 @@ public class Spill extends AppCompatActivity implements View.OnClickListener {
         inputBokstav.setText("");
         v.setBackgroundColor(Color.BLACK);
 
-        if (brukteOrd.contains(tastatur)) {
+        if (brukteOrd.contains(tastatur))
+        {
             Toast.makeText(Spill.this, "Allerede brukt!", Toast.LENGTH_SHORT).show();
 
             return;
@@ -104,7 +134,8 @@ public class Spill extends AppCompatActivity implements View.OnClickListener {
         int samme = 0;
 
         for (int i = 0; i < nan.length(); i++) {
-            if (String.valueOf(nan.charAt(i)).toLowerCase().equals(tastatur.toLowerCase())) {
+            if (String.valueOf(nan.charAt(i)).toLowerCase().equals(tastatur.toLowerCase()))
+            {
                 if (i > 0)
 
                     tekst[i].setText(tastatur.toLowerCase());
@@ -112,57 +143,75 @@ public class Spill extends AppCompatActivity implements View.OnClickListener {
                     tekst[i].setText(tastatur.toUpperCase());
                 samme = 1;
                 antallRiktig += 1;
+                score += 0;
 
             }
         }
         if (samme != 1)
         {
             antallFeil += 1;
+            score -= 100;
 
             switch (antallFeil)
             {
                 case 1:
                     galge.setImageResource(R.drawable.galge1);
-                    int score = 500;
+
                     break;
                 case 2:
                     galge.setImageResource(R.drawable.galge2);
-                    score = 400;
+
                     break;
                 case 3:
                     galge.setImageResource(R.drawable.galge3);
-                    score = 300;
+
                     break;
                 case 4:
                     galge.setImageResource(R.drawable.galge4);
-                    score = 200;
+
                     break;
                 case 5:
                     galge.setImageResource(R.drawable.galge5);
-                    score = 100;
+
                     break;
                 case 6:
                     galge.setImageResource(R.drawable.galge6);
-                    score = 0;
-
                     break;
-
             }
 
         }
-       if (antallRiktig == nan.length())
+        if (antallRiktig == nan.length())
         {
-            System.out.println("Du vant!");
-            Intent i = new Intent(Spill.this, MainActivity.class);
-            i.putExtra("NAN", "Du vant! \n\t Won");
-            startActivity(i);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Du Vant!");
+            builder.setMessage("Riktig ord: " + nan + "\n" + "Din score: " + score)
+
+                    .setCancelable(false)
+                    .setPositiveButton("Nytt spill", new DialogInterface.OnClickListener()
+                    {
+                        public void onClick(DialogInterface dialog, int id)
+                        {
+                            Intent intent = getIntent();
+                            finish();
+                            startActivity(intent);
+                        }
+                    })
+                    .setNegativeButton("Hovedmeny", new DialogInterface.OnClickListener()
+                    {
+                        public void onClick(DialogInterface dialog, int id)
+                        {
+                            Spill.this.finish();
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
 
         }
         if (antallFeil == 6)
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Du tapte!");
-            builder.setMessage("Riktig ord: " + nan + "Din score:" + total)
+            builder.setMessage("Riktig ord: " + nan + "\n" + "Din score: " + deviceLocale)
 
                     .setCancelable(false)
 

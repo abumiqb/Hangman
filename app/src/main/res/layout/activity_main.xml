@@ -46,7 +46,7 @@
         android:background="@color/tittelFarge"
         android:forceHasOverlappingRendering="false"
         android:onClick="Spill"
-        android:text="Spill"
+        android:text="@string/macSpill"
         android:textColor="@color/windowBackground"
         tools:ignore="HardcodedText" />
 
@@ -62,7 +62,7 @@
         android:layout_gravity="center_horizontal"
         android:background="@color/tittelFarge"
         android:onClick="Regler"
-        android:text="Regler"
+        android:text="@string/macRegler"
         android:textColor="@color/windowBackground"
         tools:ignore="HardcodedText" />
 
@@ -78,7 +78,7 @@
         android:layout_gravity="center_horizontal"
         android:background="@color/tittelFarge"
         android:onClick="Sprak"
-        android:text="Språk"
+        android:text="@string/macSprak"
         android:textColor="@color/windowBackground"
         tools:ignore="HardcodedText" />
 
@@ -94,7 +94,7 @@
         android:layout_gravity="center_horizontal"
         android:background="@color/tittelFarge"
         android:onClick="Stat"
-        android:text="Statistikk"
+        android:text="@string/macStatistikk"
         android:textColor="@color/windowBackground"
         android:textSize="14sp"
         tools:ignore="HardcodedText" />

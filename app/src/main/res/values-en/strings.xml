@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Hangman</string>
+    <string name="macRegler">Rules</string>
+    <string name="macSpill">Play</string>
+    <string name="macSprak">Language</string>
+    <string name="macStatistikk">Statistics</string>
+    <string name="sprkEng">English</string>
+    <string name="sprkNor">Norwegian</string>
+    <string name="sprklbl">Choose Language</string>
+</resources>

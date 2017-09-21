@@ -1,6 +1,12 @@
 <resources>
-    <string name="app_name">Hangman</string>
-    <string name="spill">//Spill</string>
-    <string name="button">Button</string>
-    <string name="galge_bilde">galge_bilde</string>
+    <string name="app_name" translatable="false">Hangman</string>
+    <string name="galge_bilde" translatable="false">galge_bilde</string>
+    <string name="macSpill">Spill</string>
+    <string name="macRegler">Regler</string>
+    <string name="macSprak">Språk</string>
+    <string name="macStatistikk">Statistikk</string>
+    <string name="sprklbl">Velg Språk</string>
+    <string name="sprkNor">Norsk</string>
+    <string name="sprkEng">Engelsk</string>
+
 </resources>
