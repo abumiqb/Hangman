@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Hangman</string>
+    <string name="app_name">Hangman</string>
     <string name="galge_bilde" translatable="false">galge_bilde</string>
     <string name="macSpill">Spill</string>
     <string name="macRegler">Regler</string>

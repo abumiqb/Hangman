@@ -91,9 +91,7 @@ public class Spill extends AppCompatActivity implements View.OnClickListener
             a.setVisibility(View.GONE);
             b.setVisibility(View.GONE);
             c.setVisibility(View.GONE);
-            Ord = Words;
             nan = Words[index];
-
         }
         else if(st.contains("no"))
         {
@@ -124,7 +122,6 @@ public class Spill extends AppCompatActivity implements View.OnClickListener
         if (brukteOrd.contains(tastatur))
         {
             Toast.makeText(Spill.this, R.string.used, Toast.LENGTH_SHORT).show();
-
             return;
         }
         brukteOrd.add(tastatur);
@@ -143,7 +140,6 @@ public class Spill extends AppCompatActivity implements View.OnClickListener
                 samme = 1;
                 antallRiktig += 1;
                 score += 0;
-
             }
         }
         if (samme != 1)
