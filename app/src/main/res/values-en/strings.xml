@@ -15,4 +15,5 @@
     <string name="dinScore">Your Score</string>
     <string name="Dutapte">You Lost!</string>
     <string name="used">Word used</string>
+    <string name="lan">eng</string>
 </resources>

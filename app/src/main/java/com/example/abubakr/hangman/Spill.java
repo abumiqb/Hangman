@@ -1,9 +1,8 @@
 package com.example.abubakr.hangman;
 
-import android.content.Context;
+
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -17,12 +16,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
-import java.util.Locale;
-
 
 public class Spill extends AppCompatActivity implements View.OnClickListener
 {
     String[] Ord;
+    String[] Words;
     EditText inputBokstav;
     ImageView galge;
     LinearLayout gjettMeg;
@@ -31,14 +29,9 @@ public class Spill extends AppCompatActivity implements View.OnClickListener
     int score = 600;
     int index;
     String nan;
+    TextView sp;
     ArrayList<String> brukteOrd = new ArrayList<>();
     TextView[] tekst;
-
-    //String sprak = Resources.getSystem().getConfiguration().locale;
-
-    String deviceLocale= Locale.getDefault().getDisplayLanguage();
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -79,30 +72,35 @@ public class Spill extends AppCompatActivity implements View.OnClickListener
         View b = findViewById(R.id.ø);
         View c = findViewById(R.id.å);
 
-     /*   if (sprak.equals("en"))
-        {
-            a.setVisibility(View.GONE);
-            b.setVisibility(View.GONE);
-            c.setVisibility(View.GONE);
-        }
-        else if(sprak.equals("nb"))
-        {
-            a.setVisibility(View.VISIBLE);
-            b.setVisibility(View.VISIBLE);
-            c.setVisibility(View.VISIBLE);
-        } */
-
-
-
+        sp = (TextView) findViewById(R.id.sp);
+        String st = sp.getText().toString();
         inputBokstav = (EditText) findViewById(R.id.inputBokstav);
         galge = (ImageView) findViewById(R.id.galge);
         gjettMeg = (LinearLayout) findViewById(R.id.output_layout);
         Ord = getResources().getStringArray(R.array.OrdListe);
+        Words = getResources().getStringArray(R.array.WordList);
+
 
         index = (int) (Math.random() * Ord.length);
         nan = Ord[index];
         brukteOrd = new ArrayList<>();
         tekst = new TextView[nan.length()];
+
+        if(st.contains("en"))
+        {
+            a.setVisibility(View.GONE);
+            b.setVisibility(View.GONE);
+            c.setVisibility(View.GONE);
+            Ord = Words;
+            nan = Words[index];
+
+        }
+        else if(st.contains("no"))
+        {
+            a.setVisibility(View.VISIBLE);
+            b.setVisibility(View.VISIBLE);
+            c.setVisibility(View.VISIBLE);
+        }
 
         for (int i = 0; i < nan.length(); i++)
         {
@@ -114,8 +112,6 @@ public class Spill extends AppCompatActivity implements View.OnClickListener
             tekst[i] = streker;
         }
     }
-
-
 
     @Override
     public void onClick(View v)
@@ -135,7 +131,8 @@ public class Spill extends AppCompatActivity implements View.OnClickListener
 
         int samme = 0;
 
-        for (int i = 0; i < nan.length(); i++) {
+        for (int i = 0; i < nan.length(); i++)
+        {
             if (String.valueOf(nan.charAt(i)).toLowerCase().equals(tastatur.toLowerCase()))
             {
                 if (i > 0)
@@ -180,7 +177,6 @@ public class Spill extends AppCompatActivity implements View.OnClickListener
                     galge.setImageResource(R.drawable.galge6);
                     break;
             }
-
         }
         String t = getResources().getString(R.string.Riktigord);
         String s = getResources().getString(R.string.dinScore);
@@ -210,14 +206,9 @@ public class Spill extends AppCompatActivity implements View.OnClickListener
                     });
             AlertDialog alert = builder.create();
             alert.show();
-
-
-
         }
         if (antallFeil == 6)
         {
-
-
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle(R.string.Dutapte);
             builder.setMessage(t +": "+ nan + "\n" + s + ": " + score)
