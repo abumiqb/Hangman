@@ -3,6 +3,7 @@ package com.example.abubakr.hangman;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -32,6 +33,7 @@ public class Spill extends AppCompatActivity implements View.OnClickListener
     TextView sp;
     ArrayList<String> brukteOrd = new ArrayList<>();
     TextView[] tekst;
+    TextView score1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -79,6 +81,8 @@ public class Spill extends AppCompatActivity implements View.OnClickListener
         gjettMeg = (LinearLayout) findViewById(R.id.output_layout);
         Ord = getResources().getStringArray(R.array.OrdListe);
         Words = getResources().getStringArray(R.array.WordList);
+        score1 = (TextView) findViewById(R.id.score1);
+
 
 
         index = (int) (Math.random() * Ord.length);
@@ -139,7 +143,9 @@ public class Spill extends AppCompatActivity implements View.OnClickListener
                     tekst[i].setText(tastatur.toUpperCase());
                 samme = 1;
                 antallRiktig += 1;
-                score += 0;
+
+                score1.setText("Score: " + score);
+
             }
         }
         if (samme != 1)
@@ -174,6 +180,9 @@ public class Spill extends AppCompatActivity implements View.OnClickListener
                     break;
             }
         }
+
+     ;
+
         String t = getResources().getString(R.string.Riktigord);
         String s = getResources().getString(R.string.dinScore);
         if (antallRiktig == nan.length())
@@ -230,5 +239,10 @@ public class Spill extends AppCompatActivity implements View.OnClickListener
             AlertDialog alert = builder.create();
             alert.show();
         }
+        SharedPreferences preferences = getSharedPreferences("PREFS", 0);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt("lastScore",score);
+        editor.apply();
     }
+
 }

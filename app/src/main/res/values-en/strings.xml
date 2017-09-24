@@ -16,4 +16,6 @@
     <string name="Dutapte">You Lost!</string>
     <string name="used">Word used</string>
     <string name="lan">eng</string>
+    <string name="sc">Score</string>
+    <string name="regler1">You get six tries to guess the correct word, and will get 100 per correct letter. After games ends you will get the either chance to play or go back to main menu.</string>
 </resources>

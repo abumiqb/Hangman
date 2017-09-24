@@ -16,4 +16,6 @@
     <string name="Dutapte">Du tapte!</string>
     <string name="used">Allerede Brukt!</string>
     <string name="lan">nor</string>
+    <string name="sc">Poeng</string>
+    <string name="regler1">Du får seks forsøk på å gjette riktig ord, du får 100 per riktig ord. Og etter endt spill vil du få muligheten til å gå tilbake til hovedmenyen eller spille på nytt</string>
 </resources>

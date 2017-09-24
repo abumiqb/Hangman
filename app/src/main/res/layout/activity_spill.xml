@@ -12,6 +12,14 @@
         android:visibility="gone"
         android:text="@string/lan" />
 
+    <TextView
+        android:id="@+id/score1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible">
+
+    </TextView>
+
     <Space
         style="1000dp"
         android:layout_width="match_parent"

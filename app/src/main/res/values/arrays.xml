@@ -5,13 +5,25 @@
         <item>Maskin</item>
         <item>Katt</item>
         <item>Natt</item>
+        <item>Hest</item>
+        <item>Hus</item>
+        <item>Joker</item>
+        <item>Bord</item>
+        <item>Sekk</item>
+        <item>Valg</item>
+        <item>Stue</item>
     </string-array>
-
     <string-array name="WordList">
         <item>House</item>
         <item>Seat</item>
         <item>Moon</item>
-        <item>Work</item>
+        <item>Animal</item>
+        <item>Wall</item>
+        <item>Charger</item>
+        <item>Clean</item>
+        <item>School</item>
+        <item>Car</item>
+        <item>Ticket</item>
     </string-array>
 </resources>
 
